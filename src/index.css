@@ -1,0 +1,211 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here.
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* DreamCore Gaming Color Palette */
+    --background: 220 65% 10%;        /* Deep Blue #0B132B */
+    --foreground: 0 0% 100%;          /* Snow White #FFFFFF */
+
+    --card: 220 65% 12%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 220 65% 12%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 225 100% 58%;           /* Electric Blue #256EFF */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 30% 15%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 220 30% 20%;
+    --muted-foreground: 220 15% 70%;
+
+    --accent: 215 100% 70%;            /* Light Blue accent */
+    --accent-foreground: 220 65% 10%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 30% 25%;
+    --input: 220 30% 18%;
+    --ring: 225 100% 58%;
+
+    --radius: 1rem;                   /* 2xl rounded borders */
+
+    /* DreamCore Custom Design Tokens */
+    --deep-blue: 220 65% 10%;         /* #0B132B */
+    --electric-blue: 225 100% 58%;    /* #256EFF */
+    --light-blue: 215 100% 70%;       /* #92C6FF */
+    --matte-black: 240 5% 11%;        /* #1C1C1E */
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(225 100% 65%), hsl(215 100% 70%));
+    --gradient-glow: linear-gradient(180deg, hsl(225 100% 58% / 0.1), transparent);
+    --gradient-card: linear-gradient(145deg, hsl(220 30% 15%), hsl(220 35% 12%));
+
+    /* Effects */
+    --shadow-glow: 0 0 30px hsl(225 100% 58% / 0.3);
+    --shadow-card: 0 10px 30px -10px hsl(220 65% 5% / 0.5);
+    --shadow-button: 0 4px 15px hsl(225 100% 58% / 0.4);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-glow: box-shadow 0.3s ease, transform 0.2s ease;
+
+    --sidebar-background: 220 65% 12%;           /* Card background */
+    --sidebar-foreground: 0 0% 100%;             /* White text */
+    --sidebar-primary: 225 100% 58%;             /* Electric Blue */
+    --sidebar-primary-foreground: 0 0% 100%;     /* White text */
+    --sidebar-accent: 220 30% 20%;               /* Muted background */
+    --sidebar-accent-foreground: 0 0% 100%;      /* White text */
+    --sidebar-border: 220 30% 25%;               /* Border color */
+    --sidebar-ring: 225 100% 58%;                /* Electric Blue ring */
+  }
+
+  .dark {
+    --background: 220 65% 10%;
+    --foreground: 0 0% 100%;
+    --card: 220 65% 12%;
+    --card-foreground: 0 0% 100%;
+    --popover: 220 65% 12%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 225 100% 58%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 30% 15%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 220 30% 20%;
+    --muted-foreground: 220 15% 70%;
+    --accent: 215 100% 70%;
+    --accent-foreground: 220 65% 10%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 220 30% 25%;
+    --input: 220 30% 18%;
+    --ring: 225 100% 58%;
+    --sidebar-background: 220 65% 12%;           /* Card background */
+    --sidebar-foreground: 0 0% 100%;             /* White text */
+    --sidebar-primary: 225 100% 58%;             /* Electric Blue */
+    --sidebar-primary-foreground: 0 0% 100%;     /* White text */
+    --sidebar-accent: 220 30% 20%;               /* Muted background */
+    --sidebar-accent-foreground: 0 0% 100%;      /* White text */
+    --sidebar-border: 220 30% 25%;               /* Border color */
+    --sidebar-ring: 225 100% 58%;                /* Electric Blue ring */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* DreamCore Custom Components */
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hexagon {
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    transition: var(--transition-smooth);
+  }
+
+  .hexagon:hover {
+    transform: scale(1.1);
+    box-shadow: var(--shadow-glow);
+  }
+
+  .glow-effect {
+    box-shadow: var(--shadow-glow);
+    transition: var(--transition-glow);
+  }
+
+  .glow-effect:hover {
+    box-shadow: var(--shadow-glow), var(--shadow-button);
+    transform: translateY(-2px);
+  }
+
+  .card-gradient {
+    background: var(--gradient-card);
+    border: 1px solid hsl(var(--border));
+    backdrop-filter: blur(10px);
+  }
+
+  .nav-link {
+    position: relative;
+    transition: var(--transition-smooth);
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-primary);
+    transition: width 0.3s ease;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+}
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .backdrop-blur-strong {
+    backdrop-filter: blur(20px);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 20px hsl(225 100% 58% / 0.3);
+  }
+  100% {
+    box-shadow: 0 0 30px hsl(225 100% 58% / 0.6), 0 0 40px hsl(215 100% 70% / 0.3);
+  }
+}
